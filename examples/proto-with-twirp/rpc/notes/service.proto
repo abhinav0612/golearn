@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package protowithtwirp.rpc.notes;
+
+option go_package = "rpc/notes";
+
+message Note {
+    int32 id = 1;
+    string text = 2;
+    int64 created_at = 3;
+}
+
+message CreateNoteRequest {
+    string text = 1;
+}
+
+message GetAllNotesRequest {
+}
+
+message GetAllNotesResponse {
+    repeated Note notes = 1;
+}
+
+service NoteService {
+    rpc CreateNote (CreateNoteRequest) returns (Note);
+    rpc GetAllNotes (GetAllNotesRequest) returns (GetAllNotesResponse);
+
+}
